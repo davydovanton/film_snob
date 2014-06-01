@@ -132,4 +132,27 @@ describe FilmSnob do
     end
   end
 
+  describe 'instagram URLs' do
+    it 'should parse instagram URLs' do
+      film = FilmSnob.new("http://instagram.com/p/oTncucxP6I/")
+      expect(film.id).to eq 'oTncucxP6I'
+      expect(film.site).to eq :instagram
+      VCR.use_cassette 'aviation history' do
+        expect(film.title).to eq 'Today in #aviation history, Orville and Wilbur Wright’s historic 1906 patent was granted for "new and useful improvements to the flying machine." #tbt #avgeek'
+        expect{film.html}.to raise_error
+      end
+    end
+  end
+
+  describe 'coub URLs' do
+    it 'should parse coub URLs' do
+      film = FilmSnob.new("http://coub.com/view/rcd14cm")
+      expect(film.id).to eq 'rcd14cm'
+      expect(film.site).to eq :coub
+      VCR.use_cassette 'voodoo_people' do
+        expect(film.title).to eq 'voodoo people'
+        expect{film.html}.not_to raise_error
+      end
+    end
+  end
 end

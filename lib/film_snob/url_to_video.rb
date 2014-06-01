@@ -1,7 +1,9 @@
+require "film_snob/coub"
+require "film_snob/funny_or_die"
+require "film_snob/hulu"
+require "film_snob/instagram"
 require "film_snob/vimeo"
 require "film_snob/youtube"
-require "film_snob/hulu"
-require "film_snob/funny_or_die"
 
 class FilmSnob
   class UrlToVideo
@@ -10,7 +12,9 @@ class FilmSnob
       Vimeo,
       YouTube,
       Hulu,
-      FunnyOrDie
+      FunnyOrDie,
+      Coub,
+      Instagram
     ]
 
     attr_reader :url, :options
